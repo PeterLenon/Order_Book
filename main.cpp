@@ -118,7 +118,7 @@ class OrderBook{
     private:
     std::priority_queue<Order, std::vector<Order>, buy_greater> buyOrders;
     std::priority_queue<Order, std::vector<Order>, sell_greater> sellOrders;
-    priority_queque<Order> marketOrd;
+    priority_queque marketOrd;
     public:
     OrderBook(){}
     std::vector<Order> matchOrder(Order newOrder);

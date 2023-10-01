@@ -1,19 +1,27 @@
 #ifndef PRIORITY_QUEQUE_H
 #define PRIORITY_QUEQUE_H
 
-template <typename T>
+struct Order{
+    int orderID;
+    std::string traderID;
+    char orderType;
+    bool buy;
+    bool sell;
+    int quantity;
+    double price;
+    time_t timestamp;
+};
+
 class priority_queque{
     private:
-    vector <T> marketOrders;
-
+    std::vector <Order> marketOrders;
     public:
     priority_queque();
-    template <typename T>
-    vector<T> mergeSort(vector<T> arr, int l, int r);
-    void push(T value1);
-    T top();
+    std::vector<Order> mergeSort(std::vector<Order> arr, int l, int r);
+    void push(Order value1);
+    Order top();
     void pop();
-    int binSearch(T ord);
+    int binSearch(Order ord);
     void erase(int i);
 };
 #endif

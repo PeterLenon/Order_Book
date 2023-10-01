@@ -13,11 +13,11 @@ struct Order{
     time_t timestamp;
 };
 
-priority_queque<Order>::priority_queque(){
+priority_queque::priority_queque(){
     std::vector<Order> marketOrders = (std::vector<Order>){};
 }
 
-std::vector<Order> priority_queque<Order>::mergeSort(std::vector<Order> arr, int l, int r){
+std::vector<Order>priority_queque::mergeSort(std::vector<Order> arr, int l, int r){
     if (r - l >= 1){
         int mid = (r+l)/2;
         std::vector <Order> left = mergeSort(arr, l, mid);
@@ -56,7 +56,7 @@ std::vector<Order> priority_queque<Order>::mergeSort(std::vector<Order> arr, int
     }
 }
 
-void priority_queque<Order>::push(Order o){
+void priority_queque::push(Order o){
     int l = 0;
     int r = marketOrders.size()-1;
     int mid = (l+r)/2;
@@ -80,15 +80,15 @@ void priority_queque<Order>::push(Order o){
    
 }
 
-Order priority_queque<Order>::top(){
+Order priority_queque::top(){
     return marketOrders[0];
 }
 
-void priority_queque<Order>::pop(){
+void priority_queque::pop(){
     marketOrders.erase(marketOrders.begin()+0);
 }
 
-int priority_queque<Order>::binSearch(Order ord){
+int priority_queque::binSearch(Order ord){
     int l =0;
     int r = marketOrders.size()-1;
     int mid = (l+r)/2;
@@ -96,15 +96,15 @@ int priority_queque<Order>::binSearch(Order ord){
         mid = 0;
     }else{
         while(r>=l){
-            if(marketOrders[mid-1].timestamp> ord.timestamp && marketOrders[mid] == ord.timestamp){
+            if(marketOrders[mid-1].timestamp > ord.timestamp && marketOrders[mid].timestamp == ord.timestamp){
                 break;
-            }else if(marketOrders[mid-1].timestamp> ord.timestamp && marketOrders[mid] > ord.timestamp){
+            }else if(marketOrders[mid-1].timestamp> ord.timestamp && marketOrders[mid].timestamp > ord.timestamp){
                 l = mid +1;
-            }else if(marketOrders[mid-1].timestamp> ord.timestamp && marketOrders[mid] < ord.timestamp){
+            }else if(marketOrders[mid-1].timestamp> ord.timestamp && marketOrders[mid].timestamp < ord.timestamp){
                 return -1;
-            }else if(marketOrders[mid-1].timestamp < ord.timestamp && marketOrders[mid] < ord.timestamp){
+            }else if(marketOrders[mid-1].timestamp < ord.timestamp && marketOrders[mid].timestamp < ord.timestamp){
                 r = mid -1;
-            }else if(marketOrders[mid-1].timestamp == ord.timestamp && marketOrders[mid] < ord.timestamp){
+            }else if(marketOrders[mid-1].timestamp == ord.timestamp && marketOrders[mid].timestamp < ord.timestamp){
                 r = mid -1;
             }
         }
@@ -118,6 +118,6 @@ int priority_queque<Order>::binSearch(Order ord){
     }
     return -1;
 }
-void priority_queque<Order>::erase(int index){
+void priority_queque::erase(int index){
     marketOrders.erase(marketOrders.begin()+index);
 }
