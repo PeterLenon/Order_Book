@@ -2,13 +2,18 @@
 #define PRIORITY_QUEQUE_H
 
 template <typename T>
-class priority_queue{
+class priority_queque{
     private:
-    void mergeSort();
+    vector <T> marketOrders;
+
     public:
-    priority_queue();
+    priority_queque();
+    template <typename T>
+    vector<T> mergeSort(vector<T> arr, int l, int r);
     void push(T value1);
     T top();
     void pop();
+    int binSearch(T ord);
+    void erase(int i);
 };
 #endif

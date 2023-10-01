@@ -1,6 +1,8 @@
 #include <string>
 #include <queue>
 #include <iostream>
+#include <ctime>
+#include <priority_queque.h>
 
 struct Order{
     int orderID;
@@ -10,6 +12,7 @@ struct Order{
     bool sell;
     int quantity;
     double price;
+    time_t timestamp;
 };
 std::priority_queue<Order, std::vector<Order>, buy_greater> buyOrders;
 std::priority_queue<Order, std::vector<Order>, sell_greater> sellOrders;
@@ -115,7 +118,21 @@ class OrderBook{
     private:
     std::priority_queue<Order, std::vector<Order>, buy_greater> buyOrders;
     std::priority_queue<Order, std::vector<Order>, sell_greater> sellOrders;
+    priority_queque<Order> marketOrd;
     public:
     OrderBook(){}
     std::vector<Order> matchOrder(Order newOrder);
+    void cancelOrder(Order ord){
+        if(ord.orderType == 'M'){
+            int found = marketOrd.binSearch(ord);
+            if(found >= 0){
+                marketOrd.erase(found);
+                std::cout<<"Order has been cancelled!"<<std::endl;
+            }else{
+                std::cout<<"Order has been executed and cannot be cancelled!"<<std::endl;
+            }
+        }else if(ord.orderType == 'L'){
+            NULL;
+        }
+    }
 };
